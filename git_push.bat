@@ -1,18 +1,18 @@
 @echo off
-SET /p commitMessage="请输入提交信息: "
+SET /p commitMessage="Please enter the submission information: "
 IF "%commitMessage%"=="" (
-    echo 提交信息不能为空。
+    echo The submitted information cannot be empty.
     exit /b
 )
 
 git add .
 git commit -m "%commitMessage%"
 IF %ERRORLEVEL% NEQ 0 (
-    echo 提交失败，请检查提交信息是否正确。
+    echo Submission failed, please check if the submission information is correct.
     exit /b
 )
 
-SET /p branchName="请输入要推送的分支名称 (默认为 main): "
+SET /p branchName="Please enter the name of the branch to be pushed (default to main):"
 IF "%branchName%"=="" (
     SET branchName=main
 )
@@ -20,7 +20,7 @@ IF "%branchName%"=="" (
 git pull origin %branchName%
 git push origin %branchName%
 IF %ERRORLEVEL% NEQ 0 (
-    echo 推送失败，请检查分支名称和网络连接。
+    echo Push failed, please check the branch name and network connection.
     exit /b
 )
 
